@@ -1,0 +1,12 @@
+.custom-tooltip {
+    --bs-tooltip-bg: gray;
+}
+
+.bg-details {
+  background-color: var(--app-color);
+}
+
+.scrollable {
+    max-height: 10rem;
+    overflow-y: scroll;
+}
