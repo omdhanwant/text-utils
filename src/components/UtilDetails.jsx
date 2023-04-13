@@ -28,6 +28,10 @@ function UtilDetails(props) {
             value: props.characters
         },
         {
+            name: 'Sentences',
+            value: props.sentences
+        },
+        {
             name: 'Silent Reading Time',
             value: readingTime(230),
             info: 'Based on an average reading spead of 230 words per minute'

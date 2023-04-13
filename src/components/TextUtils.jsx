@@ -1,5 +1,5 @@
 
-import { useLayoutEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import UtilDetails from './UtilDetails';
 
 
@@ -11,34 +11,40 @@ function TextUtils() {
     const [replaceText, setReplaceText] = useState('');
 
 
-    useLayoutEffect(() => {
-      const textArea = document.querySelector('#app-text');
-      textArea.addEventListener('selectionchange', (e) => {
-        console.log(e)
-      })
-    })
-
-    function words() {
-      if ( selectedText ) {
-        return selectedText.split(' ').length;
-      }
-      return text ? text.split(' ').length : 0;
+   const words = useCallback(function(){
+    if ( selectedText ) {
+      return selectedText.split(' ').length;
     }
+    return text ? text.split(' ').length : 0;
+  }, [text, selectedText])
 
-    function characters() {
-      if ( selectedText ) {
-        return selectedText.length;
-      }
-      return text.length;
+  const characters = useCallback(function() {
+    if ( selectedText ) {
+      return selectedText.length;
     }
+    return text.length;
+  }, [text, selectedText])
 
-    function toUpperCase() {
-        setText(text.toUpperCase())
+  const sentences = useCallback(function(){
+    if ( selectedText ) {
+      return selectedText.split('.').length - 1;
     }
+    return text ? text.split('.').length - 1 : 0;
+  }, [text, selectedText])
 
-    function toLowerCase() {
+  const toUpperCase = useCallback(function () {
+    setText(text.toUpperCase())
+  }, [text])
+
+  const toLowerCase = useCallback(function() {
         setText(text.toLowerCase())
-    }
+    },[text])
+
+  const toTitleCase = useCallback(function () {
+    const lowercase = text.toLowerCase();
+    const format = lowercase.replace(lowercase.charAt(0), lowercase.charAt(0).toUpperCase())
+    setText(format)
+  }, [text])
 
     function clear() {
       setSelectedText('');
@@ -49,13 +55,19 @@ function TextUtils() {
       setSelectedText('');
     }
 
-    function selectText() {
-      const selection = window.getSelection().toString();
-      if ( text.includes(selection)) {
-         setSelectedText(selection);
-         setSearchText(selection);
-      }
+  const reverse = useCallback(function () {
+    if (text.length > 1)
+      setText(text.split('').reverse().join(''));
+  }, [text])
+
+
+  function selectText() {
+    const selection = window.getSelection().toString();
+    if ( text.includes(selection)) {
+        setSelectedText(selection);
+        setSearchText(selection);
     }
+  }
     
 
     return (
@@ -74,8 +86,19 @@ function TextUtils() {
                   </div>
                   <div className="col">
                     <div className="row g-0 gap-2 justify-between my-4">
-                      <button disabled={!!!text.length} type="button" onClick={() => { toUpperCase() }} className="btn btn-primary col">Uppercase</button>
-                      <button disabled={!!!text.length} type="button" onClick={() => { toLowerCase() }} className="btn btn-primary col">Lowercase</button>
+
+                    <div className="dropdown col">
+                      <button disabled={!!!text.length} className="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Cases
+                      </button>
+                      <ul className="dropdown-menu p-0 border-0">
+                        <li><button disabled={!!!text.length} type="button" onClick={() => { toLowerCase() }} className="btn btn-primary w-100">Lowercase</button></li>
+                        <li><button disabled={!!!text.length} type="button" onClick={() => { toUpperCase() }} className="btn btn-primary w-100">Uppercase</button></li>
+                        <li><button disabled={!!!text.length} type="button" onClick={() => { toTitleCase() }} className="btn btn-primary w-100">Titlecase</button></li>
+                      </ul>
+                    </div>
+
+                      <button disabled={!!!text.length} type="button" onClick={() => { reverse() }} className="btn btn-primary col">Reverse</button>
                       <button disabled={!!!text.length} type="button" className="btn btn-primary col" data-bs-toggle="modal" data-bs-target="#findreplace">Find & Replace</button>
                       <button disabled={!!!text.length} type="button" onClick={() => { clear() }} className="btn btn-secondary col">Clear</button>
                       {selectedText ? <button disabled={!!!text.length} type="button" onClick={() => { clearSelection() }} className="btn btn-secondary col">Clear Selection</button> : ''}
@@ -88,7 +111,7 @@ function TextUtils() {
               <div className="col-lg-4 col-md-12 col-sm-12">
                 <div className='row g-0 my-4 flex-grow-1'>
                   <div className="col">
-                    <UtilDetails words={words()} characters={characters()} selectedText={selectedText}></UtilDetails>
+                    <UtilDetails words={words()} characters={characters()} sentences={sentences()} selectedText={selectedText}></UtilDetails>
                   </div>
                 </div>
               </div>

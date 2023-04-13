@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-class ClassComponent extends React.Component {
+class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,8 +37,8 @@ class ClassComponent extends React.Component {
     }
 }
 
-ClassComponent.propTypes = {
+Header.propTypes = {
     componentType: PropTypes.string
   };
  
-export default ClassComponent;
+export default Header;

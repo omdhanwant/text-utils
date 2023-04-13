@@ -1,5 +1,5 @@
 import './css/App.css'
-import ClassComponent from './components/ClassComponent';
+import Header from './components/Header';
 import TextUtils from './components/TextUtils';
 // import FunctionComponent from './components/FunctionComponent';
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <header className="App-header">
         <div className="row">
           <div className="col-12 justify-center align-items-center">
-            <ClassComponent componentType="Utils"></ClassComponent>
+            <Header componentType="Utils"></Header>
           </div>
         </div>
       </header>

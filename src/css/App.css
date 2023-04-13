@@ -1,6 +1,11 @@
 :root {
   --app-color: #61dafb;
 }
+::-moz-selection, ::selection {
+  color: #ffffff;
+  font-weight: 500;
+  background: var(--app-color);
+}
 
 .btn-primary {
   --bs-btn-bg: var(--app-color);
