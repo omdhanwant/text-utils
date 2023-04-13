@@ -18,6 +18,16 @@ Functionalities this app supports -
   - Reading Time
   - Speaking Time
   - Selected Text
+  
+### Some glimpse of the application
+<img width="1435" alt="Screenshot 2023-04-13 at 19 48 28" src="https://user-images.githubusercontent.com/34024335/231788666-42e74edc-8c8c-4514-ba6c-43758643fa14.png">
+
+<img width="1432" alt="Screenshot 2023-04-13 at 19 49 06" src="https://user-images.githubusercontent.com/34024335/231788779-4b9475bc-3289-427e-b88b-2b142bb2bd06.png">
+
+<img width="1437" alt="Screenshot 2023-04-13 at 19 49 46" src="https://user-images.githubusercontent.com/34024335/231788825-f1a3166a-a33f-42dc-a51e-d444412a054d.png">
+
+<img width="1434" alt="Screenshot 2023-04-13 at 19 51 39" src="https://user-images.githubusercontent.com/34024335/231789114-7d2fda39-4823-494a-96c4-b9bf5f20c84d.png">
+
 
 ## Available Scripts
 
