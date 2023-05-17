@@ -6,7 +6,7 @@ Just fork this app and start playing with it. Try to add additional functionalit
 
 Functionalities this app supports -
 - Can change text cases
-  - Lowecase
+  - Lowercase
   - Uppercase
   - Titlecase
 - Find and Replace words
@@ -14,7 +14,7 @@ Functionalities this app supports -
 - Show text details on the go as you type
   - Words count
   - Characters count
-  - Scentences count
+  - Sentences count
   - Reading Time
   - Speaking Time
   - Selected Text
